@@ -1,7 +1,7 @@
 {
-  "name": "<%= npmName %>",
-  "version": "<%= version %>",
-  "description": "<%= description %>",
+  "name": "vue-tp-materials-admin-table",
+  "version": "1.0.0",
+  "description": "业务表单",
   "files": [
     "src/",
     "lib/",
@@ -21,15 +21,16 @@
     "lint": "vue-cli-service lint",
     "screenshot": "ice-devtools screenshot",
     "prepublishOnly": "npm run build",
-    "pub":"nrm use npm && npm publish && cnpm sync <%= npmName %> && nrm use taobao"
+    "pub": "nrm use npm && npm publish && cnpm sync vue-tp-materials-admin-table && nrm use taobao"
   },
   "dependencies": {
     "@vue-materials/basic-container": "^1.0.0",
+    "axios": "^0.18.0",
     "echarts": "^4.2.1",
+    "iview": "^3.4.1",
     "v-charts": "^1.19.0",
     "vue": "^2.6.6",
     "vue-router": "^3.0.2",
-    "iview": "^3.4.1",
     "vue2-storage": "^3.4.0"
   },
   "devDependencies": {
@@ -60,13 +61,15 @@
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
   },
-  "generateConfig":{
+  "generateConfig": {
     "registry": "https://registry.npm.taobao.org"
   },
   "blockConfig": {
-    "name": "<%= name %>",
-    "title": "<%= title %>",
-    "categories": <%- JSON.stringify(Object.keys(categories)) %>,
+    "name": "admin-table",
+    "title": "AdminTable",
+    "categories": [
+      "表单"
+    ],
     "screenshot": ""
   }
 }

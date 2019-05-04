@@ -6,7 +6,6 @@
   "scripts": {
     "deploy": "npm run generate && npm run sync",
     "generate": "ice-devtools generate",
-    //"generate": "/Users/wgz/work/ice/ice-master/tools/ice-devtools/bin/ice-devtools.js generate",
     "sync": "ice-devtools sync",
     "sync-unpkg": "ice-devtools sync-unpkg",
     "lint": "npm run lint:nofix -- --fix",
