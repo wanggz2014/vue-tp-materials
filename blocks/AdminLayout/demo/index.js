@@ -4,6 +4,7 @@ import Router from 'vue-router';
 import iView from 'iview';
 import 'iview/dist/styles/iview.css';
 
+
 const router = new Router({
   routes: [
     // 动态路径参数 以冒号开头
