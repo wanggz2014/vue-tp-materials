@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "@vue-materials/basic-container": "^1.0.0",
+    "axios": "^0.18.0",
     "echarts": "^4.2.1",
     "iview": "^3.4.1",
     "v-charts": "^1.19.0",

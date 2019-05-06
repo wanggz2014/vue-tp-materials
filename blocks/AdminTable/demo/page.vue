@@ -1,12 +1,17 @@
 <template>
   <div className="demo-page">
-    <Test :columnConfig="columns" 
-            searchUrl="tenantSearch" 
-            editUrl="tenantEdit" 
-            addUrl="tenantAdd" 
-            deleteUrl="tenantDelete"
-            baseUrl="http://localhost:8088/rest">
+    <Test   :searchUrl="searchUrl"
+            :editUrl="editUrl"
+            :addUrl="addUrl"
+            :deleteUrl="deleteUrl"
+            :metaUrl="metaUrl"
+            :local="local"
+            :page="page">
     </Test>  
+    <!-- <Test   :deleteUrl="deleteUrl"
+            :local="local"
+            :page="page">
+    </Test>   -->
   </div>
 </template>
 
@@ -17,12 +22,15 @@ export default {
   components: { Test },
   name: 'DemoPage',
   data:function() {
+    const baseUrl="http://localhost:8088/rest/";
     return {
-      columns: [
-        { title: 'Email', key: 'email', editable: true },
-        { title: 'Name', key: 'name', editable: true },
-        { title: 'Create-Time', key: 'createTime' }
-      ]
+      searchUrl:baseUrl+"tableSearch",
+      editUrl:baseUrl+"tableEdit", 
+      addUrl:baseUrl+"tableAdd", 
+      deleteUrl:baseUrl+"tableDelete",
+      metaUrl:baseUrl+"tableMeta",
+      local:false,
+      page:false
     }
   }
 }

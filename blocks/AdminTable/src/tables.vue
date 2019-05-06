@@ -211,6 +211,9 @@ export default {
       })
     },
     setDefaultSearchKey () {
+      if(this.columns.length==0){
+        return;
+      }
       this.searchKey = this.columns[0].key !== 'handle' ? this.columns[0].key : (this.columns.length > 1 ? this.columns[1].key : '')
     },
     handleClear (e) {

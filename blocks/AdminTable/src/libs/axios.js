@@ -1,23 +1,11 @@
 import axios from 'axios'
-// import { Spin } from 'iview'
-const addErrorLog = errorInfo => {
-  const { statusText, status, request: { responseURL } } = errorInfo
-  let info = {
-    type: 'ajax',
-    code: status,
-    mes: statusText,
-    url: responseURL
-  }
-}
 
 class HttpRequest {
-  constructor (baseUrl = baseURL) {
-    this.baseUrl = baseUrl
+  constructor () {
     this.queue = {}
   }
   getInsideConfig () {
     const config = {
-      baseURL: this.baseUrl,
       headers: {
         //
         "Content-Type":"application/x-www-form-urlencoded"
@@ -59,7 +47,6 @@ class HttpRequest {
           request: { responseURL: config.url }
         }
       }
-      addErrorLog(errorInfo)
       return Promise.reject(error)
     })
   }

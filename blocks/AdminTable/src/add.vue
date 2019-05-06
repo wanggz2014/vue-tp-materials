@@ -20,17 +20,28 @@
 </template>
 
 <script>
-import { addTableData } from './libs/data'
+import { addTableData,responseHandle} from './libs/data'
+
+function errorMessage(entry,message){
+  entry.loading=false; 
+  entry.error=true;
+  entry.$Message.error(message);
+}
+
+
 export default {
   name: 'TablesAdd',
   props:{
-    formAdd:Boolean,
-    addUrl:String,
-    baseUrl:String
+    formAdd:{
+      type:Boolean,
+      default:false
+    },
+    addUrl:String
   },
   data:function(){
     return {
       loading:true,
+      error:false,
       addForm: {
           name: '',
           email: '',
@@ -53,35 +64,34 @@ export default {
   methods: {
     handleAdd(){
       const form = this.$refs.addForm;
+      const entry=this;
+      //console.log(this.loading);
       form.validate((valid) => {
-          if (valid) {
-            this.loading=true;
-            //提交数据
-            addTableData({
-              requestParams:this.addForm,
-              requestUrl:this.addUrl,
-              baseUrl:this.baseUrl
-            }).then(res => {
-              this.loading=false;
-              console.log(res);
-              if(res.data.success){
-                this.handleChange(false);
-                this.$emit('on-modal-success');
-              }else{
-                this.$Message.error('新增存储异常,请核对');
-              }
-            }).catch(err=>{
-              this.$Message.error('新增存储异常,请核对');
-              this.loading=false;
-            })
-            return;
-          } 
-          this.$Message.error('输入参数异常，请核对');
-          this.loading=false;
+        if (!valid) {
+          errorMessage(entry,'新增参数异常,请核对')
+          return
+        }
+        //提交数据
+        addTableData({
+          requestParams:this.addForm,
+          requestUrl:this.addUrl
+        }).then(res => {
+          responseHandle(res,entry.$Message,function(){
+            entry.handleChange(false);
+            entry.$emit('on-modal-success');
+          })
+        }).catch(err=>{
+          errorMessage(entry,'新增存储异常,请核对')
+        })
       })
+
     },
     handleChange(params){
+      this.loading=true;
       if(!params){
+        if(!this.error){
+          this.$refs.addForm.resetFields();
+        }
         this.$emit('on-modal-close', params)
       }
     }

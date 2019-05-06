@@ -1,5 +1,5 @@
 <template>
-  <div class="layout">
+  <div class="layout" v-if="display">
     <Layout>
       <!-- header -->
       <Header>
@@ -32,6 +32,7 @@
                 :open-names="open"
                 @on-select="turnToPage" 
                 v-for="sub in menuData" 
+                v-if="sub.show"
                 v-bind:key="sub.subMenu">
 
                 <Submenu :name="sub.subMenu">
@@ -51,7 +52,7 @@
               }"
             >
               <!-- Content -->
-              <slot name="content"></slot>
+              <slot></slot>
             </Content>
           </Layout>
         </Content>
@@ -65,30 +66,116 @@
 </template>
 
 <script>
-import {getMenuData,getMenuDetail,toUrl} from './libs/menu'
-import Vue2Storage from 'vue2-storage';
+import {getMenuData,getMenuDetail,toUrl,responseHandle} from './libs/menu'
 import Vue from 'vue';
-
+import Vue2Storage from 'vue2-storage';
 Vue.use(Vue2Storage)
+
+const DEFAULT_MENU_ITEM="tenant-manager";
+const DEFAULT_MENU_DATA=[{
+    "subMenu":"tenant",
+    "subTitle":"租户管理",
+    "show":true,
+    "items":[
+      {
+        "name":"tenant-manager",
+        "title":"信息管理",
+        "url":"tenantmanager.html"
+      }
+    ]
+  },
+  {
+    "subMenu":"log",
+    "subTitle":"日志查看",
+    "show":true,
+    "items":[
+      {
+        "name":"log-auth",
+        "title":"授权认证",
+        "url":"logauth.html"
+      },
+      {
+        "name":"log-status",
+        "title":"节点状态",
+        "url":"logstatus.html"
+      }
+    ]
+  },
+  {
+    "subMenu":"notify",
+    "subTitle":"消息中心",
+    "show":true,
+    "items":[
+      {
+        "name":"notify-search",
+        "title":"消息查询",
+        "url":"notifysearch.html"
+      }
+    ]
+  },
+  {
+    "subMenu":"common",
+    "subTitle":"管理",
+    "show":false,
+    "items":[
+      {
+        "name":"login",
+        "title":"登陆",
+        "url":"login.html"
+      }
+    ]
+  }]
+
 export default {
   name: 'AdminLayout',
   components: {},
-  data:function(){
-    const menuDetail=getMenuDetail(this.$storage);
+  props:{
+    initMenuData:{
+      type:Array,
+      default:function () {
+        return DEFAULT_MENU_DATA
+      }
+    },
+    menuUrl:String,
+    defaultMenuItem:{
+      type:String,
+      default:DEFAULT_MENU_ITEM
+    }
+  },
+  data: function(){
     return {
-      menuData:getMenuData(),
-      active:menuDetail.active,
-      open:menuDetail.open,
-      breadcrumb:menuDetail.breadcrumb
+      menuData:[],
+      active:'',
+      open:'',
+      breadcrumb:'',
+      display:false
     }
   },
   methods: {
     turnToPage (active) {
-      toUrl(active,this.$storage)
+      toUrl(active,this.defaultMenuItem,this.$storage)
     }
-    // turnToLogin (active) {
-    //   toUrl(active)
-    // }
+  },
+  created:function(){
+    getMenuData({
+        menuData:this.initMenuData,
+        menuUrl:this.menuUrl
+    }).then(res=>{
+      const obj=this;
+      responseHandle(res,this.$Message,function(menuData){
+        //列表信息
+        obj.$storage.set('menuData',menuData, { ttl: 60 * 1000*60 });
+        obj.menuData=menuData;
+
+        //导航详情
+        //console.log(obj.defaultMenuItem)
+        const menuDetail=getMenuDetail(obj.$storage,obj.defaultMenuItem);
+        obj.active=menuDetail.active;
+        obj.open=menuDetail.open;
+        obj.breadcrumb=menuDetail.breadcrumb;
+        obj.display=true;
+      })
+    })
   }
 };
 </script>
