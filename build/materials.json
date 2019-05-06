@@ -12,7 +12,7 @@
       "source": {
         "type": "npm",
         "npm": "vue-tp-materials-admin-layout",
-        "version": "1.0.0",
+        "version": "1.0.1",
         "registry": "https://registry.npmjs.org",
         "sourceCodeDirectory": "src/"
       },
@@ -27,12 +27,13 @@
         "vue2-storage": "^3.4.0",
         "vuex": "^3.1.0"
       },
+      "screenshot": "https://file.iviewui.com/dist/e1cf12c07bf6458992569e67927d767e.png",
       "screenshots": [
-        null
+        "https://file.iviewui.com/dist/e1cf12c07bf6458992569e67927d767e.png"
       ],
       "customConfig": null,
       "publishTime": "2019-05-06T11:55:40.285Z",
-      "updateTime": "2019-05-06T11:56:07.000Z"
+      "updateTime": "2019-05-06T14:21:44.000Z"
     },
     {
       "name": "admin-table",
@@ -44,7 +45,7 @@
       "source": {
         "type": "npm",
         "npm": "vue-tp-materials-admin-table",
-        "version": "1.0.0",
+        "version": "1.0.1",
         "registry": "https://registry.npmjs.org",
         "sourceCodeDirectory": "src/"
       },
@@ -58,22 +59,23 @@
         "vue-router": "^3.0.2",
         "vue2-storage": "^3.4.0"
       },
+      "screenshot": "https://file.iviewui.com/dist/e1cf12c07bf6458992569e67927d767e.png",
       "screenshots": [
-        null
+        "https://file.iviewui.com/dist/e1cf12c07bf6458992569e67927d767e.png"
       ],
       "customConfig": null,
       "features": {
         "useComponents": []
       },
       "publishTime": "2019-05-06T11:57:43.777Z",
-      "updateTime": "2019-05-06T11:57:56.000Z"
+      "updateTime": "2019-05-06T14:22:40.000Z"
     }
   ],
   "components": [],
   "scaffolds": [
     {
       "name": "vpc-admin",
-      "title": "VpcAdmin",
+      "title": "Admin",
       "description": "vpc管理后台",
       "categories": [
         "TP模板"
@@ -81,7 +83,7 @@
       "source": {
         "type": "npm",
         "npm": "vue-tp-materials-vpc-admin",
-        "version": "1.0.0",
+        "version": "1.0.2",
         "registry": "https://registry.npmjs.org"
       },
       "dependencies": {
@@ -97,13 +99,14 @@
         "vuex": "^3.1.0",
         "vuex-persistedstate": "^2.5.4"
       },
+      "screenshot": "https://file.iviewui.com/dist/e1cf12c07bf6458992569e67927d767e.png",
       "screenshots": [
-        null
+        "https://file.iviewui.com/dist/e1cf12c07bf6458992569e67927d767e.png"
       ],
       "builder": "vue-cli-service",
       "customConfig": null,
       "publishTime": "2019-05-06T12:00:33.546Z",
-      "updateTime": "2019-05-06T12:00:45.000Z"
+      "updateTime": "2019-05-06T14:47:21.000Z"
     }
   ]
 }

@@ -68,8 +68,8 @@
 <script>
 import {getMenuData,getMenuDetail,toUrl,responseHandle} from './libs/menu'
 import Vue from 'vue';
-import Vue2Storage from 'vue2-storage';
 import { mapActions } from 'vuex';
+import Vue2Storage from 'vue2-storage';
 Vue.use(Vue2Storage)
 
 const DEFAULT_MENU_ITEM="tenant-manager";
