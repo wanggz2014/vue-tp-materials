@@ -23,7 +23,7 @@ export const getUserInfo = (token) => {
   })
 }
 
-export const logout = () => {
+export const logout = (token) => {
   return axios.request({
     url: 'logout',
     data:Qs.stringify({

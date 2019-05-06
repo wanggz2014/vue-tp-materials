@@ -1,4 +1,4 @@
-import { login, getUserInfo } from '@/api/user'
+import { login, getUserInfo, logout } from '@/api/user'
 import { setToken, getToken } from '@/libs/util'
 import config from '@/config'
 
@@ -57,6 +57,7 @@ export default {
         }).then(res => {
           const data = res.data
           if(res.status==200&&data.success){
+            console.log('token:'+data.details)
             commit('setToken', data.details)
             resolve()
           }else{
@@ -71,9 +72,22 @@ export default {
     // 退出登录
     handleLogOut ({ state, commit }) {
       return new Promise((resolve, reject) => {
-        // 如果你的退出登录无需请求接口，则可以直接使用下面三行代码而无需使用logout调用接口
-        commit('setToken', '')
-        resolve()
+        if(local){
+          commit('setToken', '')
+          resolve()
+          return;
+        }
+        logout(state.token).then(res => {
+          const data = res.data
+          if(res.status==200&&data.success){
+            commit('setToken', '')
+            resolve()
+          }else{
+            reject("not success from service")
+          }
+        }).catch(err => {
+          reject(err)
+        })
       })
     },
     // 获取用户相关信息

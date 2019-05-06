@@ -3,7 +3,7 @@
     <Layout>
       <!-- header -->
       <Header>
-        <Menu mode="horizontal" theme="dark" active-name="login" @on-select="turnToPage" >
+        <Menu mode="horizontal" theme="dark" active-name="login" @on-select="turnToLogout" >
           <div class="layout-logo"></div>
           <div class="layout-nav">
             <MenuItem name="login">
@@ -69,6 +69,7 @@
 import {getMenuData,getMenuDetail,toUrl,responseHandle} from './libs/menu'
 import Vue from 'vue';
 import Vue2Storage from 'vue2-storage';
+import { mapActions } from 'vuex';
 Vue.use(Vue2Storage)
 
 const DEFAULT_MENU_ITEM="tenant-manager";
@@ -152,8 +153,23 @@ export default {
     }
   },
   methods: {
+    ...mapActions([
+      'handleLogOut',
+    ]),
     turnToPage (active) {
       toUrl(active,this.defaultMenuItem,this.$storage)
+    },
+    turnToLogout(active){
+      if(this.$store!=undefined){
+        this.handleLogOut().then(res => {
+          this.turnToPage(active);
+        }).catch(res=>{
+          console.log(res);
+          this.$Message.error('用户退出异常!!!')
+        })
+        return;
+      }
+      this.turnToPage(active);
     }
   },
   created:function(){
