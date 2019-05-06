@@ -1,0 +1,51 @@
+<template>
+  <div className="<%= pageName %>-page">
+    <% for(var i=0; i< renders.length;i++){ -%>
+      <% var layout=renders[i].layout -%>
+      <<%= layout.className -%> >
+      
+      <template slot="default">
+          <% for(var j=0; j< renders[i].slotDefault.length;j++){ -%>
+            <<%= renders[i].slotDefault[j].className -%> />
+          <% } -%>
+      </template>
+      <% for(var j=0; j< renders[i].slotNames.length;j++){ -%>
+        <% var layout=renders[i].slotNames[j] -%>
+        <% if(layout.block!=null){ -%>
+        <template slot="<%= layout.name %>">
+            <<%= layout.block.className -%> />
+        </template>
+        <% } -%>
+      <% } -%>
+
+      </<%= layout.className -%> >
+    <% } -%>  
+    <!-- 重要！！！ temp_placehold请不要移除-->
+    <!-- temp_placehold -->
+  </div>
+</template>
+
+<script>
+  //重要！！！ import_placehold\comp_placehold 请不要移除
+  //import_placehold
+  import config from '@/config'
+  <% for(var i = 0; i < blocks.length; i++) { -%>
+  import <%= blocks[i].className %> from '<%= blocks[i].relativePath -%>';
+  <% } -%>
+
+  const baseUrl=config.baseUrl();
+  export default {
+    name: '<%= className %>',
+    components: {
+      //comp_placehold
+      <% for(var i = 0; i < blocks.length; i++) { -%>
+      <%= blocks[i].className %>,
+      <% } -%>
+    },
+    data:function(){
+      return {
+        local:this.$route.params.local
+      }
+    }
+  };
+</script>
