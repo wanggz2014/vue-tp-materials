@@ -1,6 +1,6 @@
 {
   "name": "vue-tp-materials-admin-layout",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "后台管理布局",
   "files": [
     "src/",

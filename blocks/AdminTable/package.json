@@ -1,6 +1,6 @@
 {
   "name": "vue-tp-materials-admin-table",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "业务表单",
   "files": [
     "src/",
