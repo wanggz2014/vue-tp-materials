@@ -32,7 +32,7 @@ export default {
     metaUrl:String,
     local:{
       type:Boolean,
-      default:false
+      default:true
     },
     page:{
       type:Boolean,

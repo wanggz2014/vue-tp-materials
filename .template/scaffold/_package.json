@@ -64,6 +64,7 @@
     "title": "<%= title %>",
     "categories": [
       "基础模板"
-    ]
+    ],
+    "screenshot": "https://img.alicdn.com/tfs/TB1gSTgpKuSBuNjy1XcXXcYjFXa-2016-876.png"
   }
 }

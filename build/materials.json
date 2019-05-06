@@ -1,0 +1,109 @@
+{
+  "type": "vue",
+  "name": "vue-tp-materials",
+  "blocks": [
+    {
+      "name": "admin-layout",
+      "title": "后台管理布局",
+      "description": "后台管理布局",
+      "categories": [
+        "其他"
+      ],
+      "source": {
+        "type": "npm",
+        "npm": "vue-tp-materials-admin-layout",
+        "version": "1.0.0",
+        "registry": "https://registry.npmjs.org",
+        "sourceCodeDirectory": "src/"
+      },
+      "dependencies": {
+        "@vue-materials/basic-container": "^1.0.0",
+        "axios": "^0.18.0",
+        "echarts": "^4.2.1",
+        "iview": "^3.4.1",
+        "v-charts": "^1.19.0",
+        "vue": "^2.6.6",
+        "vue-router": "^3.0.2",
+        "vue2-storage": "^3.4.0",
+        "vuex": "^3.1.0"
+      },
+      "screenshots": [
+        null
+      ],
+      "customConfig": null,
+      "publishTime": "2019-05-06T11:55:40.285Z",
+      "updateTime": "2019-05-06T11:56:07.000Z"
+    },
+    {
+      "name": "admin-table",
+      "title": "AdminTable",
+      "description": "业务表单",
+      "categories": [
+        "表单"
+      ],
+      "source": {
+        "type": "npm",
+        "npm": "vue-tp-materials-admin-table",
+        "version": "1.0.0",
+        "registry": "https://registry.npmjs.org",
+        "sourceCodeDirectory": "src/"
+      },
+      "dependencies": {
+        "@vue-materials/basic-container": "^1.0.0",
+        "axios": "^0.18.0",
+        "echarts": "^4.2.1",
+        "iview": "^3.4.1",
+        "v-charts": "^1.19.0",
+        "vue": "^2.6.6",
+        "vue-router": "^3.0.2",
+        "vue2-storage": "^3.4.0"
+      },
+      "screenshots": [
+        null
+      ],
+      "customConfig": null,
+      "features": {
+        "useComponents": []
+      },
+      "publishTime": "2019-05-06T11:57:43.777Z",
+      "updateTime": "2019-05-06T11:57:56.000Z"
+    }
+  ],
+  "components": [],
+  "scaffolds": [
+    {
+      "name": "vpc-admin",
+      "title": "VpcAdmin",
+      "description": "vpc管理后台",
+      "categories": [
+        "TP模板"
+      ],
+      "source": {
+        "type": "npm",
+        "npm": "vue-tp-materials-vpc-admin",
+        "version": "1.0.0",
+        "registry": "https://registry.npmjs.org"
+      },
+      "dependencies": {
+        "@vue-materials/basic-container": "^1.0.0",
+        "axios": "^0.18.0",
+        "echarts": "^4.2.1",
+        "iview": "^3.4.1",
+        "js-cookie": "^2.2.0",
+        "v-charts": "^1.19.0",
+        "vue": "^2.6.6",
+        "vue-router": "^3.0.2",
+        "vue2-storage": "^3.4.0",
+        "vuex": "^3.1.0",
+        "vuex-persistedstate": "^2.5.4"
+      },
+      "screenshots": [
+        null
+      ],
+      "builder": "vue-cli-service",
+      "customConfig": null,
+      "publishTime": "2019-05-06T12:00:33.546Z",
+      "updateTime": "2019-05-06T12:00:45.000Z"
+    }
+  ]
+}

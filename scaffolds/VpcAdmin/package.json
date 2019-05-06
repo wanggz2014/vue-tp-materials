@@ -80,7 +80,8 @@
     "title": "VpcAdmin",
     "categories": [
       "TP模板"
-    ]
+    ],
+    "screenshot": "https://img.alicdn.com/tfs/TB1gSTgpKuSBuNjy1XcXXcYjFXa-2016-876.png"
   },
   "materialConfig": {
     "type": "vue"

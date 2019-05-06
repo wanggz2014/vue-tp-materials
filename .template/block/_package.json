@@ -67,6 +67,6 @@
     "name": "<%= name %>",
     "title": "<%= title %>",
     "categories": <%- JSON.stringify(Object.keys(categories)) %>,
-    "screenshot": ""
+    "screenshot": "https://img.alicdn.com/tfs/TB1gSTgpKuSBuNjy1XcXXcYjFXa-2016-876.png"
   }
 }
