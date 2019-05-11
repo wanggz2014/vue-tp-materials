@@ -2,7 +2,7 @@
   <div>
     <div v-if="searchable && searchPlace === 'top'" class="search-con search-con-top">
       <Select v-model="searchKey" class="search-col">
-        <Option v-for="item in columns" v-if="item.key !== 'handle'" :value="item.key" :key="`search-col-${item.key}`">{{ item.title }}</Option>
+        <Option v-for="item in columns" v-if="item.key !== 'handle' &&item.searchable"  :value="item.key" :key="`search-col-${item.key}`">{{ item.title }}</Option>
       </Select>
       <Input @on-change="handleClear" clearable placeholder="输入关键字搜索" class="search-input" v-model="searchValue"/>
       <Button @click="handleSearch" class="search-btn" type="primary"><Icon type="search"/>&nbsp;&nbsp;搜索</Button>
@@ -52,10 +52,12 @@
 
 <script>
 import TablesEdit from './edit.vue'
+import TableExpandLabel from './expand-label.vue'
 import handleBtns from './handle-btns'
 import './index.less'
 export default {
   name: 'Tables',
+  components: { TableExpandLabel },
   props: {
     value: {
       type: Array,
@@ -202,11 +204,23 @@ export default {
       }
       return item
     },
+    supportExpand (item,index) {
+      item.render=(h, params) => {
+        const temp=item.expandType=='label'?TableExpandLabel:null;
+        return h(temp, {
+            props: {
+                details: params.row[item.key]
+            }
+        })
+      }
+      return item
+    },
     handleColumns (columns) {
       this.insideColumns = columns.map((item, index) => {
         let res = item
         if (res.editable) res = this.suportEdit(res, index)
         if (res.key === 'handle') res = this.surportHandle(res)
+        if (res.type!=undefined&&res.type=='expand') res=this.supportExpand(res,index)
         return res
       })
     },

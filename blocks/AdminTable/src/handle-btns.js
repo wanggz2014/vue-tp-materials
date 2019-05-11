@@ -27,6 +27,72 @@ const btns = {
         })
       ])
     ])
+  },
+  "extend-one": function(type,title,message){
+      return (h, params, vm) => {
+        return h('Poptip', {
+          props: {
+            confirm: true,
+            title: message
+          },
+          on: {
+            'on-ok': () => {
+              vm.$emit('on-extend-one', params)
+            }
+          }
+        }, [
+          h('Button', {
+            props: {
+              type: 'text',
+              ghost: true
+            },
+            attrs: {
+              title: title
+            }
+          }, [
+            h('Icon', {
+              props: {
+                type: type,
+                size: 18,
+                color: '#000000'
+              }
+            })
+          ])
+        ])
+      }
+  },
+  "extend-two": function(type,title,message){
+    return (h, params, vm) => {
+      return h('Poptip', {
+        props: {
+          confirm: true,
+          title: message
+        },
+        on: {
+          'on-ok': () => {
+            vm.$emit('on-extend-two', params)
+          }
+        }
+      }, [
+        h('Button', {
+          props: {
+            type: 'text',
+            ghost: true
+          },
+          attrs: {
+            title: title
+          }
+        }, [
+          h('Icon', {
+            props: {
+              type: type,
+              size: 18,
+              color: '#000000'
+            }
+          })
+        ])
+      ])
+    }
   }
 }
 

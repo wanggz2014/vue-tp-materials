@@ -15,7 +15,7 @@
       </Header>
       <Layout :style="{ padding: '0 50px' }">
         <Breadcrumb :style="{ margin: '16px 0' }">
-          <BreadcrumbItem v-for="crumb in breadcrumb" v-bind:key="crumb">
+          <BreadcrumbItem v-for="crumb in currentInfo.breadcrumb" v-bind:key="crumb">
             {{crumb}}
           </BreadcrumbItem>
         </Breadcrumb>
@@ -26,10 +26,10 @@
             <!-- sider -->
             <Sider hide-trigger :style="{ background: '#fff' }">
               <Menu
-                :active-name="active"
+                :active-name="currentInfo.active"
                 theme="light"
                 width="auto"
-                :open-names="open"
+                :open-names="currentInfo.open"
                 @on-select="turnToPage" 
                 v-for="sub in menuData" 
                 v-if="sub.show"
@@ -55,77 +55,25 @@
               <slot></slot>
             </Content>
           </Layout>
+          <slot name="extend"></slot>
         </Content>
       </Layout>
-      <!-- footer -->
-      <Footer class="layout-footer-center">
-        2011-2016 &copy; TalkingData
-      </Footer>
+      <slot name="footer">
+        <!-- footer -->
+        <Footer class="layout-footer-center">
+          2011-2016 &copy; TalkingData
+        </Footer>
+      </slot>
     </Layout>
   </div>
 </template>
 
 <script>
 import {getMenuData,getMenuDetail,toUrl,responseHandle} from './libs/menu'
+import DEFAULT_MENU_DATA from './libs/menu.json'
 import Vue from 'vue';
-import Vue2Storage from 'vue2-storage';
 import { mapActions } from 'vuex';
-Vue.use(Vue2Storage)
-
-const DEFAULT_MENU_ITEM="tenant-manager";
-const DEFAULT_MENU_DATA=[{
-    "subMenu":"tenant",
-    "subTitle":"租户管理",
-    "show":true,
-    "items":[
-      {
-        "name":"tenant-manager",
-        "title":"信息管理",
-        "url":"tenantmanager.html"
-      }
-    ]
-  },
-  {
-    "subMenu":"log",
-    "subTitle":"日志查看",
-    "show":true,
-    "items":[
-      {
-        "name":"log-auth",
-        "title":"授权认证",
-        "url":"logauth.html"
-      },
-      {
-        "name":"log-status",
-        "title":"节点状态",
-        "url":"logstatus.html"
-      }
-    ]
-  },
-  {
-    "subMenu":"notify",
-    "subTitle":"消息中心",
-    "show":true,
-    "items":[
-      {
-        "name":"notify-search",
-        "title":"消息查询",
-        "url":"notifysearch.html"
-      }
-    ]
-  },
-  {
-    "subMenu":"common",
-    "subTitle":"管理",
-    "show":false,
-    "items":[
-      {
-        "name":"login",
-        "title":"登陆",
-        "url":"login.html"
-      }
-    ]
-  }]
+import Cookies from 'js-cookie'
 
 export default {
   name: 'AdminLayout',
@@ -138,17 +86,16 @@ export default {
       }
     },
     menuUrl:String,
-    defaultMenuItem:{
-      type:String,
-      default:DEFAULT_MENU_ITEM
-    }
+    token:String
   },
   data: function(){
     return {
       menuData:[],
-      active:'',
-      open:'',
-      breadcrumb:'',
+      currentInfo:{
+        active:'',
+        open:'',
+        breadcrumb:''
+      },
       display:false
     }
   },
@@ -157,7 +104,7 @@ export default {
       'handleLogOut',
     ]),
     turnToPage (active) {
-      toUrl(active,this.defaultMenuItem,this.$storage)
+      toUrl(active,this.menuData)
     },
     turnToLogout(active){
       if(this.$store!=undefined){
@@ -173,22 +120,19 @@ export default {
     }
   },
   created:function(){
+    console.log(Cookies.get('token'))
     getMenuData({
         menuData:this.initMenuData,
-        menuUrl:this.menuUrl
+        menuUrl:this.menuUrl,
+        token: this.token==undefined?Cookies.get('token'):this.token
     }).then(res=>{
       const obj=this;
       responseHandle(res,this.$Message,function(menuData){
         //列表信息
-        obj.$storage.set('menuData',menuData, { ttl: 60 * 1000*60 });
         obj.menuData=menuData;
-
         //导航详情
-        //console.log(obj.defaultMenuItem)
-        const menuDetail=getMenuDetail(obj.$storage,obj.defaultMenuItem);
-        obj.active=menuDetail.active;
-        obj.open=menuDetail.open;
-        obj.breadcrumb=menuDetail.breadcrumb;
+        obj.currentInfo=getMenuDetail(menuData);
+        //console.log(obj.currentInfo)
         obj.display=true;
       })
     })

@@ -3,19 +3,20 @@
         title="新增"
         :value="formAdd"
         :loading="loading"
-        @on-ok="handleAdd"
         @on-visible-change="handleChange" >
       <Form ref="addForm" :model="addForm" :rules="ruleValidate" :label-width="120">
-          <FormItem label="Name" prop="name">
-              <Input v-model="addForm.name" placeholder="Enter your name"/>
+          <FormItem  v-for="item in formItems" v-bind:key="item.prop" :label="item.label" :prop="item.prop">
+            <Input v-if="item.type=='input'" v-model="addForm[item.prop]" :placeholder="item.placeholder"/>
+            <DatePicker v-if="item.type=='date'" :placeholder="item.placeholder" v-model="addForm[item.prop]"></DatePicker>
           </FormItem>
-          <FormItem label="E-mail" prop="email">
-              <Input v-model="addForm.email" placeholder="Enter your e-mail"/>
+          <FormItem>
+            <Button type="primary" @click="handleAdd()">提交</Button>
+            <Button @click="handleReset()" style="margin-left: 8px">重置</Button>
           </FormItem>
-          <FormItem label="Create-Time" prop="createTime">
-              <DatePicker type="date" placeholder="Select date" v-model="addForm.createTime"></DatePicker>
-          </FormItem>
-      </Form>  
+      </Form>
+      <template #footer>
+          <div></div>
+      </template>
   </Modal>
 </template>
 
@@ -36,37 +37,31 @@ export default {
       type:Boolean,
       default:false
     },
-    addUrl:String
+    submitUrl:String,
+    formMeta:{
+      type:Object,
+      default(){
+        return {"items":[],"rules":{}}
+      }
+    },
+    token:String
   },
   data:function(){
     return {
       loading:true,
       error:false,
-      addForm: {
-          name: '',
-          email: '',
-          createTime:''
-      },
-      ruleValidate: {
-          name: [
-              { required: true, message: 'The name cannot be empty', trigger: 'blur' }
-          ],
-          email: [
-              { required: true, message: 'Mailbox cannot be empty', trigger: 'blur' },
-              { type: 'email', message: 'Incorrect email format', trigger: 'blur' }
-          ],
-          createTime: [
-              { required: true, type: 'date', message: 'Please select the date', trigger: 'change' }
-          ]
-      }
+      addForm: {},
+      formItems:this.formMeta.items,
+      ruleValidate: this.formMeta.rules
     }
   },
   methods: {
     handleAdd(){
       const form = this.$refs.addForm;
       const entry=this;
-      //console.log(this.loading);
+      console.log("form add");
       form.validate((valid) => {
+
         if (!valid) {
           errorMessage(entry,'新增参数异常,请核对')
           return
@@ -74,13 +69,15 @@ export default {
         //提交数据
         addTableData({
           requestParams:this.addForm,
-          requestUrl:this.addUrl
+          requestUrl:this.submitUrl
         }).then(res => {
-          responseHandle(res,entry.$Message,function(){
+          responseHandle(res,entry.$Message,function(response){
             entry.handleChange(false);
-            entry.$emit('on-modal-success');
+            entry.$emit('on-modal-success',response);
           })
+          //this.$Message.info('新增记录成功')
         }).catch(err=>{
+          console.log(err)
           errorMessage(entry,'新增存储异常,请核对')
         })
       })
@@ -90,10 +87,13 @@ export default {
       this.loading=true;
       if(!params){
         if(!this.error){
-          this.$refs.addForm.resetFields();
+          this.handleReset();
         }
         this.$emit('on-modal-close', params)
       }
+    },
+    handleReset(){
+      this.$refs.addForm.resetFields();
     }
   }
 }

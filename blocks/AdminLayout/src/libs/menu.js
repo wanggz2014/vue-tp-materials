@@ -1,30 +1,30 @@
 import HttpRequest from './axios';
+import Qs from 'qs'
 
 const axios = new HttpRequest();
 
-/**
- * 获取导航的父节点
- * @param {当前导航item} activeMenu 
- */
-function getSubName(activeMenu,store){
-  const menuData=store.get('menuData');
-  for(let i=0;i<menuData.length;i++){
-    for(let j=0;j<menuData[i].items.length;j++){
-      const menu=menuData[i].items[j]
-      if(menu.name==activeMenu){
-        return menuData[i].subMenu;
-      }
-    }
-  }
-  return null;
-}
+// /**
+//  * 获取导航的父节点
+//  * @param {当前导航item} activeMenu 
+//  */
+// function getSubName(activeMenu,store){
+//   const menuData=store.get('menuData');
+//   for(let i=0;i<menuData.length;i++){
+//     for(let j=0;j<menuData[i].items.length;j++){
+//       const menu=menuData[i].items[j]
+//       if(menu.name==activeMenu){
+//         return menuData[i].subMenu;
+//       }
+//     }
+//   }
+//   return null;
+// }
 
 /**
  * 获取当前导航信息
  * @param {当前导航} activeMenu 
  */
-function getMenu(activeMenu,store){
-  const menuData=store.get('menuData');
+function getMenu(activeMenu,menuData){
   for(let i=0;i<menuData.length;i++){
     for(let j=0;j<menuData[i].items.length;j++){
       const menu=menuData[i].items[j]
@@ -38,21 +38,24 @@ function getMenu(activeMenu,store){
 /**
  * 获取菜单信息
  */
-export const getMenuData=({menuData,menuUrl}) =>{
+export const getMenuData=({menuData,menuUrl,token}) =>{
   if(menuUrl!=undefined){
     //url请求获取信息
     return axios.request({
       url: menuUrl,
-      method: 'post'
+      method: 'post',
+      data:Qs.stringify({
+        token
+      })
     })
   }
   return new Promise(function (resolve) {
     const result={
       status:200,
       data:{
-        success:true,
+        code:200,
         message:'',
-        details:menuData
+        data:menuData
       }
     }
     resolve(result);
@@ -62,45 +65,34 @@ export const getMenuData=({menuData,menuUrl}) =>{
 /**
  * 获取当前打开页菜单信息
  */
-export const getMenuDetail=(store,defaultMenuItem) =>{
-  const active=store.get('currentEnum',defaultMenuItem);
-  const subName=getSubName(active,store)
+export const getMenuDetail=(menuData) =>{
+  const url=window.location.pathname;
   const result={
     breadcrumb:[],
-    active:active,
-    open:[subName]
+    active:null,
+    open:[]
   };
-  const menuData=store.get('menuData');
   for(let i=0;i<menuData.length;i++){
-    if(menuData[i].subMenu!=subName){
-      continue;
-    }
-    result.breadcrumb.push(menuData[i].subTitle);
+    const crumb=[menuData[i].subTitle]
     for(let j=0;j<menuData[i].items.length;j++){
       const menu=menuData[i].items[j]
-      if(menu.name==active){
-        result.breadcrumb.push(menu.title)
-        break;
+      if(url.indexOf(menu.url)>-1||menu.url.indexOf(url)>-1){
+        //console.log(menu.url)
+        crumb.push(menu.title)
+        result.breadcrumb=crumb
+        result.active=menu.name
+        result.open=[menuData[i].subMenu]
+        return result
       }
     }
-    break;
   }
   return result;
 
 }
 
-export const toUrl=(activeMenu,defaultMenuItem,store) =>{
-  if(activeMenu=='login'){
-    store.set('currentEnum',defaultMenuItem, { ttl: 60 * 1000*60 });
-  }else{
-    store.set('currentEnum',activeMenu, { ttl: 60 * 1000*60 });
-  }
-  const url=getMenu(activeMenu,store).url;
-  if(url.indexOf("http")>-1){
-    window.location.href=url;
-    return;
-  }
-  window.location.href='/'+url;
+export const toUrl=(activeMenu,menuData) =>{
+  const url=getMenu(activeMenu,menuData).url;
+  window.location.href=url;
 }
 
 export const responseHandle=(res,message,handle)=>{
@@ -109,13 +101,14 @@ export const responseHandle=(res,message,handle)=>{
     message.error("数据请求出错，请核对");
     return false;
   }
-  const data=res.data;
-  if(!data.success){
-    message.error(data.message);
+  const response=res.data;
+  console.log(response)
+  if(response.code!=200||response.data==null){
+    message.error(response.message);
     return false;
   }
   if(handle!=undefined){
-    return handle(data.details);
+    return handle(response.data);
   }
   return true;
 }
