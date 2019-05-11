@@ -1,13 +1,11 @@
 {
   "name": "vue-tp-materials-admin-layout",
-  "version": "1.0.1",
+  "version": "1.0.5",
   "description": "后台管理布局",
+  "main": "index.js",
   "files": [
     "src/",
-    "lib/",
-    "build/",
-    "screenshot.png",
-    "vue.config.js"
+    "index.js"
   ],
   "license": "MIT",
   "keywords": [

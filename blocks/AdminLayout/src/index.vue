@@ -152,7 +152,7 @@ export default {
   width: 100px;
   height: 30px;
   background: #5b6270;
-  background-image: url('./libs/logo.png');
+  background-image: url('./libs/logo.jpg');
   border-radius: 3px;
   float: left;
   position: relative;

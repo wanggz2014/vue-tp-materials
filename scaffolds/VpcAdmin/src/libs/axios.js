@@ -10,7 +10,7 @@ class HttpRequest {
       baseURL: this.baseUrl,
       headers: {
         //
-        "Content-Type":"application/x-www-form-urlencoded"
+        "Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"
       }
     }
     return config

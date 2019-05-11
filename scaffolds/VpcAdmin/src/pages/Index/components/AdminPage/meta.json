@@ -1,0 +1,19 @@
+{
+  "AdminTable":{
+      "columns":[
+        { "title": "Id", "key": "id", "editable": false ,"searchable":false, "maxWidth":100},
+        { "title": "授权KEY", "key": "apiKey", "editable": false ,"searchable":true},
+        { "title": "节点类型", "key": "nodeType", "editable": false ,"searchable":false},
+        { "title": "节点信息", "key": "nodeInfo", "editable": false ,"searchable":false,
+          "type":"expand","maxWidth":90,"expandType":"label"},
+        { "title": "创建时间", "key": "createTime", "editable": false ,"searchable":false}
+      ],
+      "url":{
+        "baseUrl":"http://localhost:8099/auth/admin",
+        "search":"/log/node/list"
+      }
+  },
+  "AdminLayout":{
+    "menu":"local"
+  }
+}

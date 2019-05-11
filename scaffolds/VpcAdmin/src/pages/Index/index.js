@@ -1,4 +1,4 @@
-import TenantManager from './TenantManager'; 
+import Index from './Index.vue';
 import Vue from 'vue';
 import iView from 'iview';
 import { beforeEach, afterEach } from '@/router';
@@ -10,20 +10,20 @@ import Router from 'vue-router';
 const router = new Router({
   routes: [
     // 动态路径参数 以冒号开头
-    { path: '/:local?', component: TenantManager },
+    { path: '/:local?', component: Index }
   ],
 });
-router.beforeEach(beforeEach)
-router.afterEach(afterEach)
 
-Vue.prototype.$config = config
+router.beforeEach(beforeEach);
+router.afterEach(afterEach);
 
 Vue.use(Router);
-Vue.use(iView,{
-  transfer:true
+Vue.use(iView, {
+  transfer: true,
 });
+Vue.prototype.$config = config;
 
 new Vue({
   router,
-  store
+  store,
 }).$mount('#app');

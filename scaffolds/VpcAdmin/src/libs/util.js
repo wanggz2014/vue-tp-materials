@@ -63,3 +63,20 @@ export const scrollTop = (el, from = 0, to, duration = 500, endCallback) => {
   }
   scroll(from, to, step)
 }
+
+export const responseHandle=(res,handle)=>{
+  if(res.status!=200){
+    console.log(res);
+    return false;
+  }
+  const response=res.data;
+  console.log(response)
+  if(response.code!=200||response.data==null){
+    console.log(res);
+    return false;
+  }
+  if(handle!=undefined){
+    return handle(response.data);
+  }
+  return true;
+}

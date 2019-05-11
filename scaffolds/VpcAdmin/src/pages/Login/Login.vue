@@ -44,11 +44,8 @@
 </template>
 
 <script>
-import LoginForm from './components/LoginForm'
+import LoginForm from '@/components/LoginForm'
 import { mapActions } from 'vuex'
-import Vue from 'vue'
-import Vue2Storage from 'vue2-storage';
-Vue.use(Vue2Storage)
 
 export default {
   components: {
@@ -67,7 +64,6 @@ export default {
     handleSubmit ({ userName, password }) {
       this.handleLogin({ userName, password }).then(res => {
         this.getUserInfo().then(res => {
-          this.$storage.remove('currentEnum')
           window.location.href=this.$config.homeUrl();
         })
       }).catch(res=>{

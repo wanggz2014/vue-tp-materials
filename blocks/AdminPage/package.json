@@ -1,22 +1,25 @@
 {
-  "name": "vue-tp-materials-vpc-admin",
-  "version": "1.0.2",
-  "description": "vpc管理后台",
-  "author": "",
+  "name": "vue-tp-materials-admin-page",
+  "version": "1.0.0",
+  "description": "表单页面",
+  "files": [
+    "src/",
+    "screenshot.png"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "ice",
+    "vue",
+    "block"
+  ],
   "scripts": {
     "start": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
+    "screenshot": "ice-devtools screenshot",
     "prepublishOnly": "npm run build",
-    "pub": "nrm use npm && npm publish && cnpm sync vue-tp-materials-vpc-admin && nrm use taobao"
+    "pub": "nrm use npm && npm publish && cnpm sync vue-tp-materials-admin-page && nrm use taobao"
   },
-  "files": [
-    "src/",
-    "public/",
-    "screenshot.png",
-    "vue.config.js",
-    "babel.config.js"
-  ],
   "dependencies": {
     "@vue-materials/basic-container": "^1.0.0",
     "axios": "^0.18.0",
@@ -29,8 +32,7 @@
     "vue-tp-materials-admin-layout": "^1.0.5",
     "vue-tp-materials-admin-table": "^1.0.3",
     "vue2-storage": "^3.4.0",
-    "vuex": "^3.1.0",
-    "vuex-persistedstate": "^2.5.4"
+    "vuex": "^3.1.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.4.0",
@@ -41,8 +43,6 @@
     "eslint-plugin-vue": "^5.0.0",
     "less": "^3.9.0",
     "less-loader": "^5.0.0",
-    "node-sass": "^4.11.0",
-    "sass-loader": "^7.1.0",
     "vue-template-compiler": "^2.5.21"
   },
   "eslintConfig": {
@@ -59,33 +59,18 @@
       "parser": "babel-eslint"
     }
   },
-  "postcss": {
-    "plugins": {
-      "autoprefixer": {}
-    }
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not ie <= 8"
-  ],
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
   },
   "generateConfig": {
     "registry": "https://registry.npm.taobao.org"
   },
-  "scaffoldConfig": {
-    "builder": "vue-cli-service",
-    "name": "vpc-admin",
-    "title": "Admin",
+  "blockConfig": {
+    "name": "admin-page",
+    "title": "表单页面",
     "categories": [
-      "TP模板"
+      "页面"
     ],
-    "screenshot": "https://file.iviewui.com/dist/e1cf12c07bf6458992569e67927d767e.png"
-  },
-  "materialConfig": {
-    "type": "vue"
-  },
-  "title": "VpcAdmin"
+    "screenshot": "./screenshot.png"
+  }
 }

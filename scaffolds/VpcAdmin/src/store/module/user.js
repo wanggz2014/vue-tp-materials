@@ -1,8 +1,8 @@
 import { login, getUserInfo, logout } from '@/api/user'
-import { setToken, getToken } from '@/libs/util'
+import { setToken, getToken,responseHandle } from '@/libs/util'
 import config from '@/config'
 
-const local=config.local();
+const local=config.local;
 
 export default {
   state: {
@@ -32,7 +32,7 @@ export default {
   },
   actions: {
     // 登录
-    handleLogin ({ commit }, { userName, password, url }) {
+    handleLogin ({ commit }, { userName, password}) {
       userName = userName.trim()
       return new Promise((resolve, reject) => {
         //本地测试,不同后端交互
@@ -55,14 +55,19 @@ export default {
           userName,
           password
         }).then(res => {
-          const data = res.data
-          if(res.status==200&&data.success){
-            console.log('token:'+data.details)
-            commit('setToken', data.details)
-            resolve()
-          }else{
+          const result=responseHandle(res,function(data){
+            if(data.auth==true){
+              commit('setToken', data.token)
+              resolve()
+            }else{
+              reject("not success from service")
+            }
+          })
+
+          if(result){
             reject("not success from service")
-          }
+          }  
+
         }).catch(err => {
           reject(err)
         })
@@ -78,8 +83,8 @@ export default {
           return;
         }
         logout(state.token).then(res => {
-          const data = res.data
-          if(res.status==200&&data.success){
+          const response = res.data
+          if(res.status==200&&response.code==200){
             commit('setToken', '')
             resolve()
           }else{
@@ -106,15 +111,16 @@ export default {
         }
         try {
           getUserInfo(state.token).then(res => {
-            if(res.status!=200||!res.data.success){
-              reject(res);
-              return;
-            }
-            const data = res.data
-            commit('setUserName', data.userName)
-            commit('setUserId', data.userId)
-            commit('setHasGetInfo', true)
-            resolve(data)
+            const result=responseHandle(res,function(info){
+              commit('setUserName', info.userName)
+              commit('setUserId', info.userId)
+              commit('setHasGetInfo', true)
+              resolve(info)
+            })
+  
+            if(result){
+              reject("not success from service")
+            }  
           }).catch(err => {
             reject(err)
           })

@@ -1,36 +1,48 @@
 <template>
   <div className="demo-page">
-    <Test   :searchUrl="searchUrl"
-            :editUrl="editUrl"
-            :addUrl="addUrl"
-            :deleteUrl="deleteUrl"
-            :metaUrl="metaUrl"
-            :local="local"
-            :page="page">
-    </Test>  
-    <!-- <Test   :deleteUrl="deleteUrl"
-            :local="local"
-            :page="page">
-    </Test>   -->
+    <AdminTable 
+        :searchUrl="searchUrl"
+        :editUrl="editUrl"
+        :addConfig="addConfig"
+        :deleteUrl="deleteUrl"
+        :extendBtns="extendBtns"
+        @on-extend-one="handleExtendOne"
+        @on-extend-two="handleExtendTwo"
+        @on-modal-success="handleAddSuccess">
+      </AdminTable>
   </div>
 </template>
 
 <script>
-import Test from '../src/index';
+import AdminTable from '../src/index';
 
 export default {
-  components: { Test },
+  components: { AdminTable },
   name: 'DemoPage',
-  data:function() {
-    const baseUrl="http://localhost:8088/rest/";
+  data: function() {
+    const baseUrl="http://localhost:8088/rest/";    
     return {
-      searchUrl:baseUrl+"tableSearch",
-      editUrl:baseUrl+"tableEdit", 
-      addUrl:baseUrl+"tableAdd", 
-      deleteUrl:baseUrl+"tableDelete",
-      metaUrl:baseUrl+"tableMeta",
-      local:false,
-      page:false
+      searchUrl:baseUrl+'tableSearch',
+      editUrl:baseUrl+'tableEdit',
+      deleteUrl: baseUrl+'tableDelete',
+      //columnMeta:columns,
+      addConfig:{
+        submitUrl:baseUrl+'tableAdd',
+        formMeta:undefined,
+        enable:false
+      },
+      extendBtns:[]
+    };
+  },
+  methods:{
+    handleExtendOne(params){
+      
+    },
+    handleExtendTwo(params){
+    
+    },
+    handleAddSuccess(params){
+      
     }
   }
 }

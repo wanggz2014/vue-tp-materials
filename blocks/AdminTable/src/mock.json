@@ -1,0 +1,28 @@
+{
+  "columns":[
+    { "title": "Id", "key": "id", "editable": true ,"searchable":false},
+    { "title": "租户名称", "key": "tenantName", "editable": true ,"searchable":true},
+    { "title": "授权KEY", "key": "apiKey", "editable": false ,"searchable":false},
+    { "title": "过期时间", "key": "expireTime", "editable": true ,"searchable":false},
+    { "title": "最近操作时间", "key": "modifyTime", "editable": false ,"searchable":false}
+  ],
+  "form":{
+    "items":[
+      {"label":"租户名称","prop":"tenantName","placeholder":"请输入租户名称","type":"input"},
+      {"label":"过期时间","prop":"expireTime","placeholder":"请输入过期时间","type":"date"}
+    ],
+    "rules": {
+      "tenantName": {
+        "required": true,
+        "message": "租户名称不能为空",
+        "trigger":"blur"
+      },
+      "expireTime": {
+        "required": true,
+        "message": "过期时间不能为空",
+        "trigger":"change",
+        "type":"date"
+      }
+    }
+  }
+}
