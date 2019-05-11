@@ -64,9 +64,9 @@
   },
   "blockConfig": {
     "name": "admin-layout",
-    "title": "后台管理布局",
+    "title": "基础布局",
     "categories": [
-      "其他"
+      "布局"
     ],
     "screenshot": "./src/lib/admin_layout.png"
   }

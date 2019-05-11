@@ -65,7 +65,7 @@
   },
   "blockConfig": {
     "name": "admin-table",
-    "title": "AdminTable",
+    "title": "基础表单",
     "categories": [
       "表单"
     ],

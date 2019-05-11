@@ -10,4 +10,4 @@ layouts/**/lib/
 blocks/**/build/
 .eslintcache
 databases
-build
+build/

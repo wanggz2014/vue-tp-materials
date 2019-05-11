@@ -12,7 +12,7 @@
       "source": {
         "type": "npm",
         "npm": "vue-tp-materials-admin-layout",
-        "version": "1.0.1",
+        "version": "1.0.6",
         "registry": "https://registry.npmjs.org",
         "sourceCodeDirectory": "src/"
       },
@@ -21,19 +21,56 @@
         "axios": "^0.18.0",
         "echarts": "^4.2.1",
         "iview": "^3.4.1",
+        "js-cookie": "^2.2.0",
         "v-charts": "^1.19.0",
         "vue": "^2.6.6",
         "vue-router": "^3.0.2",
         "vue2-storage": "^3.4.0",
         "vuex": "^3.1.0"
       },
-      "screenshot": "https://file.iviewui.com/dist/e1cf12c07bf6458992569e67927d767e.png",
+      "screenshot": "./src/lib/admin_layout.png",
       "screenshots": [
-        "https://file.iviewui.com/dist/e1cf12c07bf6458992569e67927d767e.png"
+        "./src/lib/admin_layout.png"
       ],
       "customConfig": null,
       "publishTime": "2019-05-06T11:55:40.285Z",
-      "updateTime": "2019-05-06T14:21:44.000Z"
+      "updateTime": "2019-05-11T13:53:28.000Z"
+    },
+    {
+      "name": "admin-page",
+      "title": "表单页面",
+      "description": "表单页面",
+      "categories": [
+        "页面"
+      ],
+      "source": {
+        "type": "npm",
+        "npm": "vue-tp-materials-admin-page",
+        "version": "1.0.0",
+        "registry": "https://registry.npmjs.org",
+        "sourceCodeDirectory": "src/"
+      },
+      "dependencies": {
+        "@vue-materials/basic-container": "^1.0.0",
+        "axios": "^0.18.0",
+        "echarts": "^4.2.1",
+        "iview": "^3.4.1",
+        "js-cookie": "^2.2.0",
+        "v-charts": "^1.19.0",
+        "vue": "^2.6.6",
+        "vue-router": "^3.0.2",
+        "vue-tp-materials-admin-layout": "^1.0.6",
+        "vue-tp-materials-admin-table": "^1.0.5",
+        "vue2-storage": "^3.4.0",
+        "vuex": "^3.1.1"
+      },
+      "screenshot": "./src/admin_page.png",
+      "screenshots": [
+        "./src/admin_page.png"
+      ],
+      "customConfig": null,
+      "publishTime": "2019-05-11T14:20:51.787Z",
+      "updateTime": "2019-05-11T14:21:00.000Z"
     },
     {
       "name": "admin-table",
@@ -45,7 +82,7 @@
       "source": {
         "type": "npm",
         "npm": "vue-tp-materials-admin-table",
-        "version": "1.0.1",
+        "version": "1.0.5",
         "registry": "https://registry.npmjs.org",
         "sourceCodeDirectory": "src/"
       },
@@ -54,21 +91,22 @@
         "axios": "^0.18.0",
         "echarts": "^4.2.1",
         "iview": "^3.4.1",
+        "js-cookie": "^2.2.0",
         "v-charts": "^1.19.0",
         "vue": "^2.6.6",
         "vue-router": "^3.0.2",
         "vue2-storage": "^3.4.0"
       },
-      "screenshot": "https://file.iviewui.com/dist/e1cf12c07bf6458992569e67927d767e.png",
+      "screenshot": "./src/lib/admin_table.png",
       "screenshots": [
-        "https://file.iviewui.com/dist/e1cf12c07bf6458992569e67927d767e.png"
+        "./src/lib/admin_table.png"
       ],
       "customConfig": null,
       "features": {
         "useComponents": []
       },
       "publishTime": "2019-05-06T11:57:43.777Z",
-      "updateTime": "2019-05-06T14:22:40.000Z"
+      "updateTime": "2019-05-11T13:54:29.000Z"
     }
   ],
   "components": [],
@@ -83,7 +121,7 @@
       "source": {
         "type": "npm",
         "npm": "vue-tp-materials-vpc-admin",
-        "version": "1.0.2",
+        "version": "1.0.3",
         "registry": "https://registry.npmjs.org"
       },
       "dependencies": {
@@ -95,18 +133,20 @@
         "v-charts": "^1.19.0",
         "vue": "^2.6.6",
         "vue-router": "^3.0.2",
+        "vue-tp-materials-admin-layout": "^1.0.6",
+        "vue-tp-materials-admin-table": "^1.0.5",
         "vue2-storage": "^3.4.0",
         "vuex": "^3.1.0",
         "vuex-persistedstate": "^2.5.4"
       },
-      "screenshot": "https://file.iviewui.com/dist/e1cf12c07bf6458992569e67927d767e.png",
+      "screenshot": "./vpc_admin.png",
       "screenshots": [
-        "https://file.iviewui.com/dist/e1cf12c07bf6458992569e67927d767e.png"
+        "./vpc_admin.png"
       ],
       "builder": "vue-cli-service",
       "customConfig": null,
       "publishTime": "2019-05-06T12:00:33.546Z",
-      "updateTime": "2019-05-06T14:47:21.000Z"
+      "updateTime": "2019-05-11T14:24:51.000Z"
     }
   ]
 }

@@ -78,9 +78,9 @@
   "scaffoldConfig": {
     "builder": "vue-cli-service",
     "name": "vpc-admin",
-    "title": "Admin",
+    "title": "基础管理模版",
     "categories": [
-      "TP模板"
+      "管理后台"
     ],
     "screenshot": "./vpc_admin.png"
   },
