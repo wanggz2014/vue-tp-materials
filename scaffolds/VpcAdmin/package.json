@@ -1,6 +1,6 @@
 {
   "name": "vue-tp-materials-vpc-admin",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "vpc管理后台",
   "author": "",
   "scripts": {
@@ -82,7 +82,7 @@
     "categories": [
       "TP模板"
     ],
-    "screenshot": "https://file.iviewui.com/dist/e1cf12c07bf6458992569e67927d767e.png"
+    "screenshot": "./vpc_admin.png"
   },
   "materialConfig": {
     "type": "vue"
