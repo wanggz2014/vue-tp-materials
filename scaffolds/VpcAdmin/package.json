@@ -13,7 +13,7 @@
   "files": [
     "src/",
     "public/",
-    "screenshot.png",
+    "vpc_admin.png",
     "vue.config.js",
     "babel.config.js"
   ],
