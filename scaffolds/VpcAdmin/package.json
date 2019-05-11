@@ -26,8 +26,8 @@
     "v-charts": "^1.19.0",
     "vue": "^2.6.6",
     "vue-router": "^3.0.2",
-    "vue-tp-materials-admin-layout": "^1.0.5",
-    "vue-tp-materials-admin-table": "^1.0.3",
+    "vue-tp-materials-admin-layout": "^1.0.6",
+    "vue-tp-materials-admin-table": "^1.0.5",
     "vue2-storage": "^3.4.0",
     "vuex": "^3.1.0",
     "vuex-persistedstate": "^2.5.4"
