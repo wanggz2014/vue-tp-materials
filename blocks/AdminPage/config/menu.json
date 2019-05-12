@@ -1,0 +1,24 @@
+[{
+  "subMenu":"simple",
+  "subTitle":"信息管理",
+  "show":true,
+  "items":[
+    {
+      "name":"simple-index",
+      "title":"信息查询",
+      "url":"index.html"
+    }
+  ]
+},
+{
+  "subMenu":"common",
+  "subTitle":"管理",
+  "show":false,
+  "items":[
+    {
+      "name":"login",
+      "title":"登陆",
+      "url":"login.html"
+    }
+  ]
+}]

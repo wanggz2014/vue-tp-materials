@@ -27,8 +27,8 @@ module.exports = {
         return args;
       });
     
-      // config.resolve.alias
-      //   .set('@', resolve('./'))
+      config.resolve.alias
+         .set('@', resolve('./'))
 
       //去除代码压缩
       config

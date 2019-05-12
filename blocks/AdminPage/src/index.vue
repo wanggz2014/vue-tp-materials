@@ -1,5 +1,5 @@
 <template>
-  <AdminLayout :menuUrl="menuUrl">
+  <AdminLayout :menuUrl="menuUrl" :initMenuData="initMenuData">
     <template #default>
       <AdminTable 
         :searchUrl="searchUrl"
@@ -22,6 +22,7 @@
 import AdminTable from 'vue-tp-materials-admin-table';
 import AdminLayout from 'vue-tp-materials-admin-layout';
 import Meta from './meta.json';
+import Menu from '@/config/menu.json'
 
 function url(meta,type){
   //console.log(type +":"+ meta.url.baseUrl+meta.url[type])
@@ -44,7 +45,8 @@ export default {
   data: function() {
     const tableMeta=Meta.AdminTable;
     const layoutMeta=Meta.AdminLayout
-    return {
+
+    const config={
       searchUrl:url(tableMeta,'search'),
       editUrl:url(tableMeta,'edit'),
       deleteUrl: url(tableMeta,'delete'),
@@ -55,8 +57,22 @@ export default {
         enable:tableMeta.url.add!=undefined
       },
       extendBtns:[],
-      menuUrl:layoutMeta.menu
+      menuUrl:undefined,
+      initMenuData:undefined
+      //menuUrl:layoutMeta.menu
     };
+  
+    const currentMenu=layoutMeta.menu;
+    if(currentMenu==undefined){
+      config.initMenuData=Menu
+      return config;
+    }
+    if(currentMenu.indexOf("http")>-1){
+      config.menuUrl=currentMenu;
+      return config;
+    }    
+    config.initMenuData=Menu;
+    return config;
   },
   methods:{
     handleExtendOne(params){
