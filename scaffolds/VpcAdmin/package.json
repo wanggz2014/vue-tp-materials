@@ -82,7 +82,7 @@
     "categories": [
       "管理后台"
     ],
-    "screenshot": "./vpc_admin.png"
+    "screenshot": "https://res.cloudinary.com/dwdroy6js/image/upload/v1557672031/vpc_admin_njksk3.png"
   },
   "materialConfig": {
     "type": "vue"

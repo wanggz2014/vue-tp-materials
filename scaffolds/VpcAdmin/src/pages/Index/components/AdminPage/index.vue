@@ -61,15 +61,18 @@ export default {
       initMenuData:undefined
       //menuUrl:layoutMeta.menu
     };
+  
     const currentMenu=layoutMeta.menu;
-    if(currentMenu!=undefined){
-      if(currentMenu=="local"){
-        config.initMenuData=Menu
-      }else{
-        config.menuUrl=currentMenu
-      }
+    if(currentMenu==undefined){
+      config.initMenuData=Menu
+      return config;
     }
-    return config
+    if(currentMenu.indexOf("http")>-1){
+      config.menuUrl=currentMenu;
+      return config;
+    }    
+    config.initMenuData=Menu;
+    return config;
   },
   methods:{
     handleExtendOne(params){

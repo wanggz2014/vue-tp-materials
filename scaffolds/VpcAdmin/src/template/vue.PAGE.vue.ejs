@@ -19,7 +19,11 @@
       <% } -%>
 
       </<%= layout.className -%> >
-    <% } -%>  
+    <% } -%>
+    
+    <% if(pageBlock){ -%>
+      <<%= pageBlock.className -%> />
+    <% } -%>
     <!-- 重要！！！ temp_placehold请不要移除-->
     <!-- temp_placehold -->
   </div>
