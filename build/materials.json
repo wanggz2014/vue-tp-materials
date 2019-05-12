@@ -4,15 +4,15 @@
   "blocks": [
     {
       "name": "admin-layout",
-      "title": "后台管理布局",
+      "title": "基础布局",
       "description": "后台管理布局",
       "categories": [
-        "其他"
+        "布局"
       ],
       "source": {
         "type": "npm",
         "npm": "vue-tp-materials-admin-layout",
-        "version": "1.0.6",
+        "version": "1.0.7",
         "registry": "https://registry.npmjs.org",
         "sourceCodeDirectory": "src/"
       },
@@ -28,13 +28,13 @@
         "vue2-storage": "^3.4.0",
         "vuex": "^3.1.0"
       },
-      "screenshot": "./src/lib/admin_layout.png",
+      "screenshot": "https://res.cloudinary.com/dwdroy6js/image/upload/v1557671821/admin_layout_f8yfgf.png",
       "screenshots": [
-        "./src/lib/admin_layout.png"
+        "https://res.cloudinary.com/dwdroy6js/image/upload/v1557671821/admin_layout_f8yfgf.png"
       ],
       "customConfig": null,
       "publishTime": "2019-05-06T11:55:40.285Z",
-      "updateTime": "2019-05-11T13:53:28.000Z"
+      "updateTime": "2019-05-12T14:43:48.000Z"
     },
     {
       "name": "admin-page",
@@ -46,7 +46,7 @@
       "source": {
         "type": "npm",
         "npm": "vue-tp-materials-admin-page",
-        "version": "1.0.0",
+        "version": "1.0.1",
         "registry": "https://registry.npmjs.org",
         "sourceCodeDirectory": "src/"
       },
@@ -59,22 +59,22 @@
         "v-charts": "^1.19.0",
         "vue": "^2.6.6",
         "vue-router": "^3.0.2",
-        "vue-tp-materials-admin-layout": "^1.0.6",
-        "vue-tp-materials-admin-table": "^1.0.5",
+        "vue-tp-materials-admin-layout": "^1.0.7",
+        "vue-tp-materials-admin-table": "^1.0.6",
         "vue2-storage": "^3.4.0",
         "vuex": "^3.1.1"
       },
-      "screenshot": "./src/admin_page.png",
+      "screenshot": "https://res.cloudinary.com/dwdroy6js/image/upload/v1557671912/admin_page_leazxt.png",
       "screenshots": [
-        "./src/admin_page.png"
+        "https://res.cloudinary.com/dwdroy6js/image/upload/v1557671912/admin_page_leazxt.png"
       ],
       "customConfig": null,
       "publishTime": "2019-05-11T14:20:51.787Z",
-      "updateTime": "2019-05-11T14:21:00.000Z"
+      "updateTime": "2019-05-12T14:54:58.000Z"
     },
     {
       "name": "admin-table",
-      "title": "AdminTable",
+      "title": "基础表单",
       "description": "业务表单",
       "categories": [
         "表单"
@@ -82,7 +82,7 @@
       "source": {
         "type": "npm",
         "npm": "vue-tp-materials-admin-table",
-        "version": "1.0.5",
+        "version": "1.0.6",
         "registry": "https://registry.npmjs.org",
         "sourceCodeDirectory": "src/"
       },
@@ -97,31 +97,31 @@
         "vue-router": "^3.0.2",
         "vue2-storage": "^3.4.0"
       },
-      "screenshot": "./src/lib/admin_table.png",
+      "screenshot": "https://res.cloudinary.com/dwdroy6js/image/upload/v1557671969/admin_table_imrt4c.png",
       "screenshots": [
-        "./src/lib/admin_table.png"
+        "https://res.cloudinary.com/dwdroy6js/image/upload/v1557671969/admin_table_imrt4c.png"
       ],
       "customConfig": null,
       "features": {
         "useComponents": []
       },
       "publishTime": "2019-05-06T11:57:43.777Z",
-      "updateTime": "2019-05-11T13:54:29.000Z"
+      "updateTime": "2019-05-12T14:45:06.000Z"
     }
   ],
   "components": [],
   "scaffolds": [
     {
       "name": "vpc-admin",
-      "title": "Admin",
+      "title": "基础管理模版",
       "description": "vpc管理后台",
       "categories": [
-        "TP模板"
+        "管理后台"
       ],
       "source": {
         "type": "npm",
         "npm": "vue-tp-materials-vpc-admin",
-        "version": "1.0.3",
+        "version": "1.0.5",
         "registry": "https://registry.npmjs.org"
       },
       "dependencies": {
@@ -133,20 +133,20 @@
         "v-charts": "^1.19.0",
         "vue": "^2.6.6",
         "vue-router": "^3.0.2",
-        "vue-tp-materials-admin-layout": "^1.0.6",
-        "vue-tp-materials-admin-table": "^1.0.5",
+        "vue-tp-materials-admin-layout": "^1.0.7",
+        "vue-tp-materials-admin-table": "^1.0.6",
         "vue2-storage": "^3.4.0",
         "vuex": "^3.1.0",
         "vuex-persistedstate": "^2.5.4"
       },
-      "screenshot": "./vpc_admin.png",
+      "screenshot": "https://res.cloudinary.com/dwdroy6js/image/upload/v1557672031/vpc_admin_njksk3.png",
       "screenshots": [
-        "./vpc_admin.png"
+        "https://res.cloudinary.com/dwdroy6js/image/upload/v1557672031/vpc_admin_njksk3.png"
       ],
       "builder": "vue-cli-service",
       "customConfig": null,
       "publishTime": "2019-05-06T12:00:33.546Z",
-      "updateTime": "2019-05-11T14:24:51.000Z"
+      "updateTime": "2019-05-12T15:00:06.000Z"
     }
   ]
 }
